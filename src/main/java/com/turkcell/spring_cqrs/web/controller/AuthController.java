@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.turkcell.spring_cqrs.application.features.user.command.adminregister.AdminRegisterCommand;
+import com.turkcell.spring_cqrs.application.features.user.command.adminregister.AdminRegisterResponse;
 import com.turkcell.spring_cqrs.application.features.user.command.login.LoginCommand;
 import com.turkcell.spring_cqrs.application.features.user.command.login.LoginResponse;
 import com.turkcell.spring_cqrs.application.features.user.command.register.RegisterCommand;
@@ -28,6 +30,13 @@ public class AuthController {
     {
         return mediator.send(command);
     }
+
+    @PostMapping("admin-register")
+    public AdminRegisterResponse adminRegister(@RequestBody @Valid AdminRegisterCommand command)
+    {
+        return mediator.send(command);
+    }
+
     @PostMapping("login")
     public LoginResponse login(@RequestBody @Valid LoginCommand command)
     {
